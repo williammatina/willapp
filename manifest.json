@@ -1,0 +1,13 @@
+{
+  "name": "FlashCard Language",
+  "short_name": "FlashCard",
+  "description": "Học ngôn ngữ với flashcard từ file Excel",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#5c6ef8",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

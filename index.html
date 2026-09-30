@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FlashCard Language</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#5c6ef8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FlashCard">
+  <link rel="apple-touch-icon" href="icon.svg">
+
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <!-- ── Import View ── -->
+  <div id="import-view" class="view">
+    <div class="import-logo">📚</div>
+    <h1 class="import-title">FlashCard</h1>
+    <p class="import-sub">Học ngôn ngữ thông minh</p>
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-icon">📂</div>
+      <p class="drop-main">Kéo thả file Excel vào đây</p>
+      <p class="drop-or">hoặc</p>
+      <button id="browse-btn" class="btn btn-primary">Chọn file .xlsx</button>
+      <input type="file" id="file-input" accept=".xlsx,.xls" hidden>
+    </div>
+    <p id="import-error" class="error-msg hidden"></p>
+  </div>
+
+  <!-- ── Card View ── -->
+  <div id="card-view" class="view hidden">
+    <div class="top-bar">
+      <button id="reimport-btn" class="icon-btn" title="Import file mới">📂</button>
+      <div class="progress-area">
+        <span id="progress-text">1 / 100</span>
+        <div class="progress-bar-track">
+          <div id="progress-bar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+      <button id="settings-btn" class="icon-btn" title="Cài đặt">⚙️</button>
+    </div>
+
+    <div class="card-scene" id="card-scene">
+      <div class="card" id="card">
+        <div class="card-face card-front">
+          <div class="card-content" id="front-content"></div>
+          <div class="card-hint">Nhấn để lật ↕</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-content" id="back-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button id="prev-btn" class="nav-btn">◀</button>
+      <button id="shuffle-btn" class="nav-btn">🔀</button>
+      <button id="next-btn" class="nav-btn">▶</button>
+    </div>
+
+    <div class="mark-row">
+      <button id="mark-known-btn" class="mark-btn mark-known">✓ Biết rồi</button>
+      <button id="mark-unknown-btn" class="mark-btn mark-unknown">✗ Chưa biết</button>
+    </div>
+
+    <div class="stats-row">
+      <span id="known-count" class="stat known-stat">✓ 0</span>
+      <button id="reset-btn" class="reset-link">Reset</button>
+      <span id="unknown-count" class="stat unknown-stat">✗ 0</span>
+    </div>
+  </div>
+
+  <!-- ── Settings Panel ── -->
+  <div id="settings-overlay" class="overlay hidden"></div>
+  <div id="settings-panel" class="settings-panel hidden">
+    <div class="settings-header">
+      <h2>Cài đặt thẻ</h2>
+      <button id="close-settings-btn" class="icon-btn">✕</button>
+    </div>
+    <div class="settings-body">
+      <div class="settings-section">
+        <h3>Mặt trước (Front)</h3>
+        <p class="settings-desc">Cột hiển thị đầu tiên</p>
+        <div id="front-cols-config" class="col-config"></div>
+      </div>
+      <div class="settings-section">
+        <h3>Mặt sau (Back)</h3>
+        <p class="settings-desc">Cột hiển thị khi lật thẻ</p>
+        <div id="back-cols-config" class="col-config"></div>
+      </div>
+      <div class="settings-section">
+        <h3>Hiển thị</h3>
+        <label class="toggle-label">
+          <input type="checkbox" id="show-only-unknown"> Chỉ hiện thẻ chưa biết
+        </label>
+      </div>
+    </div>
+    <button id="apply-settings-btn" class="btn btn-primary settings-apply">Áp dụng</button>
+  </div>
+
+  <script src="libs/xlsx.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
